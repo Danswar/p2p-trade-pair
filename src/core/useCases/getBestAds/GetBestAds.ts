@@ -1,5 +1,6 @@
 import Advertise from "../../entities/Advertise";
 import Market from "../../entities/Market";
+import TypeOperation from "../../entities/TypeOperation";
 import UseCase from "../../entities/UseCase";
 
 export interface GetBestAdsInputPort {
@@ -19,8 +20,11 @@ class GetBestAds extends UseCase<GetBestAdsInputPort, GetBestAdsOutputPort> {
     }
 
     async execute(params: GetBestAdsInputPort): Promise<GetBestAdsOutputPort> {
-        const sellers = await this.marketManager.getAdvertises();
-        const buyers = await this.marketManager.getAdvertises();
+        const { from, to } = params
+        const sellers = await this.marketManager.getAdvertises(from, TypeOperation.SELL)
+        const buyers = await this.marketManager.getAdvertises(to, TypeOperation.BUY)
+
+
 
         return { sellers, buyers }
     }

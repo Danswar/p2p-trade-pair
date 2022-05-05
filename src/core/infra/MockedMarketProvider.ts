@@ -5,7 +5,7 @@ import Pair from "../entities/Pair";
 
 // Mocked by now
 const market: Market = {
-    getAdvertises: async () => {
+    getAdvertises: async (assetCode: string, typeOperation: TypeOperation) => {
         const ads: Advertise[] = [
             {
                 id: "id",
@@ -15,7 +15,7 @@ const market: Market = {
                     score: 100
                 },
                 price: 100,
-                typeOperation: TypeOperation.SELL,
+                typeOperation: typeOperation,
                 pair: new Pair("BTC", "ARS"),
                 minAmount: 10,
                 maxAmount: 100,
