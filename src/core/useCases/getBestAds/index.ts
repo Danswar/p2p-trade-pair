@@ -1,6 +1,6 @@
 import GetBestAds, { GetBestAdsInputPort } from "./GetBestAds";
-import mockedMarketProvider from "../../infra/MockedMarketProvider";
+import localbitcoinsP2P from "../../infra/LocalbitcoinsP2P";
 
-const getBestAds = new GetBestAds(mockedMarketProvider)
+const getBestAds = new GetBestAds(localbitcoinsP2P)
 
 export default (params: GetBestAdsInputPort) => getBestAds.execute(params)
