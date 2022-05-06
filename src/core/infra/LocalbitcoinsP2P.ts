@@ -6,27 +6,54 @@ import Pair from "../entities/Pair"
 import TypeOperation from "../entities/TypeOperation"
 
 const BASE_URL = "https://localbitcoins.com/"
+const MAX_LIMIT_OF_PAGES = 10
+
+const typeOperationToURL = {
+    [TypeOperation.SELL]: "buy-bitcoins-online",
+    [TypeOperation.BUY]: "sell-bitcoins-online"
+}
+
+const fetchAsJson = async (url: string) => {
+    const response: any = await fetch(url)
+    const json = await response.json()
+    return json
+}
+
+const fetchAllAdvertises = async (assetCode: string, typeOperation: TypeOperation) => {
+    let counter = 0
+    let adList: any[] = []
+    let nextPageUrl = `${BASE_URL}/${typeOperationToURL[typeOperation]}/${assetCode.toUpperCase()}/.json`
+
+    while (nextPageUrl && counter < MAX_LIMIT_OF_PAGES) {
+        const page = await fetchAsJson(nextPageUrl)
+        adList = [...adList, ...page.data.ad_list]
+        nextPageUrl = page.pagination.next
+        counter++
+    }
+
+    return adList
+}
+
+const mapRawAdToAdvertise = (rawAd: any, assetCode: string, typeOperation: TypeOperation): Advertise => {
+    const { data, actions } = rawAd
+
+    return new Advertise(
+        data.ad_id,
+        data.profile,
+        data.temp_price,
+        new Pair(assetCode, "BTC"),
+        typeOperation,
+        data.min_amount,
+        data.max_amount,
+        [data.bank_name],
+        new URL(actions.public_view)
+    )
+}
 
 const localbitcoinsP2P: Market = {
     async getAdvertises(assetCode: string, typeOperation: TypeOperation) {
-        const response: any = await fetch(`${BASE_URL}/buy-bitcoins-online/ARS/.json`)
-        const jsonResponse = await response.json()
-        const { data: { ad_list } }: any = jsonResponse;
-        const ads: Advertise[] = ad_list.map((rawAd: any) => {
-            const { data } = rawAd
-            return new Advertise(
-                data.ad_id,
-                data.profile,
-                data.temp_price,
-                new Pair(assetCode, "BTC"),
-                typeOperation,
-                data.min_amount,
-                data.max_amount,
-                [data.bank_name],
-                new URL("http://localhost:3000")
-            )
-        })
-
+        const adList = await fetchAllAdvertises(assetCode, typeOperation)
+        const ads: Advertise[] = adList.map((rawAd: any) => mapRawAdToAdvertise(rawAd, assetCode, typeOperation))
         return ads;
     }
 }
