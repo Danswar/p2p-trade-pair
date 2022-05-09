@@ -1,6 +1,11 @@
+import Layout from "./components/Layout";
+import AppBar from "./components/AppBar";
+
 function App() {
   return (
-    <h1>Frontend</h1>
+    <Layout>
+      <AppBar title="P2P Manager" />
+    </Layout>
   );
 }
 
