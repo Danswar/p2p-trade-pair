@@ -25,14 +25,12 @@ const fetchAllAdvertises = async (
 ) => {
   let counter = 0
   let adList: any[] = []
-  let nextPageUrl = `${BASE_URL}/${
-    typeOperationToURL[typeOperation]
-  }/${assetCode.toUpperCase()}/.json`
+  let nextPageUrl = `${BASE_URL}/${typeOperationToURL[typeOperation]}/${assetCode}/.json`
 
   while (nextPageUrl && counter < MAX_LIMIT_OF_PAGES) {
     const page = await fetchAsJson(nextPageUrl)
     adList = [...adList, ...page.data.ad_list]
-    nextPageUrl = page.pagination.next
+    nextPageUrl = page.pagination?.next
     counter++
   }
 
