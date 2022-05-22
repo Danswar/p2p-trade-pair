@@ -1,11 +1,9 @@
-import express from 'express'
-import adsController from './controllers/ads.controller'
+import { initExpressServer } from './expressServer'
 
-const app = express()
-const port = 3000
+// Http server powered by express
+initExpressServer()
 
-app.get('/:typeOperation/:from/:to/:amount', adsController)
+// Add here any other exit to world
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// initGraphQlServer()
+// ...

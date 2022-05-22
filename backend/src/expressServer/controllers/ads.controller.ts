@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
-import TypeOperation from '../core/entities/TypeOperation'
-import getBestAds from '../core/useCases/getBestAds'
+import TypeOperation from '../../core/entities/TypeOperation'
+import getBestAds from '../../core/useCases/getBestAds'
 
 interface GetBestAdsRequest
   extends Request<{
     from: string
     to: string
     amount: string
-    typeOperation: string
+    typeOperation: string | TypeOperation
   }> {}
 
 export default async (req: GetBestAdsRequest, res: Response) => {
