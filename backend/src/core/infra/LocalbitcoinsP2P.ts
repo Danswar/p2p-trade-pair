@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import memoize from 'memoizee'
 
 import Advertise from '../entities/Advertise'
 import Market from '../entities/Market'
@@ -7,6 +8,7 @@ import TypeOperation from '../entities/TypeOperation'
 
 const BASE_URL = 'https://localbitcoins.com/'
 const MAX_LIMIT_OF_PAGES = 10
+const MAX_AGE_CACHE = 1 * 60 * 1000
 
 const typeOperationToURL = {
   [TypeOperation.SELL]: 'buy-bitcoins-online',
@@ -37,6 +39,11 @@ const fetchAllAdvertises = async (
   return adList
 }
 
+const memoFetchAllAdvertises = memoize(fetchAllAdvertises, {
+  maxAge: MAX_AGE_CACHE,
+  promise: true,
+})
+
 const mapRawAdToAdvertise = (
   rawAd: any,
   assetCode: string,
@@ -59,7 +66,7 @@ const mapRawAdToAdvertise = (
 
 const localbitcoinsP2P: Market = {
   async getAdvertises(from, to, amount, typeOperation) {
-    const adList = await fetchAllAdvertises(from, typeOperation)
+    const adList = await memoFetchAllAdvertises(from, typeOperation)
     const ads: Advertise[] = adList.map((rawAd: any) =>
       mapRawAdToAdvertise(rawAd, from, typeOperation),
     )
