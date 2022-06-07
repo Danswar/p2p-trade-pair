@@ -59,7 +59,7 @@ const mapRawAdToAdvertise = (
     typeOperation,
     data.min_amount,
     data.max_amount,
-    [data.bank_name],
+    [data.bank_name, data.msg],
     new URL(actions.public_view),
   )
 }
