@@ -1,13 +1,11 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
-import { MenuItem } from "@mui/material";
-
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
 import AdsList from "./components/AdsList";
 import { Advertise } from "./interfaces/Advertise";
+import CurrencySelector from "./components/CurrencySelector";
 
 const BEST_ADS_URL = `http://localhost:3000`;
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
@@ -36,10 +34,6 @@ function App() {
   const [ads, setAds] = useState<Advertise[]>([]);
   const [from, setFrom] = useState("USDT");
 
-  const handleChangeFrom = (event: SelectChangeEvent) => {
-    setFrom(event.target.value as string);
-  };
-
   const searchAds = async () => {
     setAds(
       await fetchAds({
@@ -55,11 +49,11 @@ function App() {
     <Layout>
       <AppBar title="P2P Manager" />
       <Box component="form">
-        <Select value={from} label="From" onChange={handleChangeFrom}>
-          {SUPPORTED_CURRENCIES.map((currencyCode) => (
-            <MenuItem value={currencyCode}>{currencyCode}</MenuItem>
-          ))}
-        </Select>
+        <CurrencySelector
+          supportedCurrencies={SUPPORTED_CURRENCIES}
+          selected={from}
+          setSelected={setFrom}
+        />
         <Button onClick={searchAds} variant="contained">
           Buscar
         </Button>
