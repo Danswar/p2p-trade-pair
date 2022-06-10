@@ -12,7 +12,15 @@ const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
 function App() {
   const [ads, setAds] = useState<Advertise[]>([]);
+  const [currentAdvertise, setCurrentAdvertise] = useState<Advertise | null>(
+    null
+  );
   const [from, setFrom] = useState("USDT");
+
+  const handleChangeAdvertise = (currentIndex: number) => {
+    const currentAd = ads[currentIndex];
+    setCurrentAdvertise(currentAd);
+  };
 
   const searchAds = async () => {
     setAds(
@@ -39,8 +47,9 @@ function App() {
         </Button>
       </Box>
       <Box>
-        <AdsList ads={ads} />
+        <AdsList ads={ads} onChange={handleChangeAdvertise} />
       </Box>
+      <p>{currentAdvertise?.advertiser.name}</p>
     </Layout>
   );
 }
