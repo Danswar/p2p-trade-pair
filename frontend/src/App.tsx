@@ -1,13 +1,8 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
-import Button from "@mui/material/Button";
-import Box from "@mui/system/Box";
-import AdsList from "./components/AdsList";
-import { Advertise } from "./interfaces/Advertise";
-import CurrencySelector from "./components/CurrencySelector";
-import { Divider } from "@mui/material";
 import useBestAds from "./hooks/useBestAds";
+import AdSearchCard from "./components/AdSearchCard";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
@@ -28,19 +23,14 @@ function App() {
   return (
     <Layout>
       <AppBar title="P2P Manager" />
-      <Box component="form">
-        <CurrencySelector
-          supportedCurrencies={SUPPORTED_CURRENCIES}
-          selected={from}
-          setSelected={setFrom}
-        />
-        <Button onClick={handleSearch} variant="contained">
-          Buscar seller
-        </Button>
-      </Box>
-      <Box>
-        <AdsList ads={ads} onChange={handleChangeAdvertise} />
-      </Box>
+      <AdSearchCard
+        currency={from}
+        setCurrency={setFrom}
+        supportedCurrencies={SUPPORTED_CURRENCIES}
+        adList={ads}
+        handleChangeAdvertise={handleChangeAdvertise}
+        handleSearch={handleSearch}
+      />
       <p>{currentAdvertise?.advertiser.name}</p>
     </Layout>
   );
