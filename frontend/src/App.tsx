@@ -7,6 +7,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
 import AdsList from "./components/AdsList";
+import { Advertise } from "./interfaces/Advertise";
 
 const BEST_ADS_URL = `http://localhost:3000`;
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
@@ -18,16 +19,21 @@ type FetchAdsInput = {
   amount: string;
 };
 
-const fetchAds = async ({ typeOperation, from, to, amount }: FetchAdsInput) => {
+const fetchAds = async ({
+  typeOperation,
+  from,
+  to,
+  amount
+}: FetchAdsInput): Promise<Advertise[]> => {
   const res = await fetch(
     `${BEST_ADS_URL}/${typeOperation}/${from}/${to}/${amount}`
   );
-  const { data } = await res.json();
+  const { data }: { data: Advertise[] } = await res.json();
   return data;
 };
 
 function App() {
-  const [ads, setAds] = useState([]);
+  const [ads, setAds] = useState<Advertise[]>([]);
   const [from, setFrom] = useState("USDT");
 
   const handleChangeFrom = (event: SelectChangeEvent) => {

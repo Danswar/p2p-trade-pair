@@ -1,7 +1,12 @@
 import { Link } from "@mui/material";
 import Slider from "react-slick";
+import { Advertise } from "../../interfaces/Advertise";
 
-const AdsList = ({ ads }: { ads: any[] }) => {
+interface AdsListProps {
+  ads: Advertise[];
+}
+
+const AdsList = ({ ads }: AdsListProps) => {
   return (
     <Slider>
       {ads.map(
