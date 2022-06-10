@@ -5,6 +5,7 @@ import Advertise from '../entities/Advertise'
 import Market from '../entities/Market'
 import Pair from '../entities/Pair'
 import TypeOperation from '../entities/TypeOperation'
+import TraderProfile from '../entities/TraderProfile'
 
 const BASE_URL = 'https://localbitcoins.com/'
 const MAX_LIMIT_OF_PAGES = 10
@@ -51,9 +52,15 @@ const mapRawAdToAdvertise = (
 ): Advertise => {
   const { data, actions } = rawAd
 
+  const advertiser = new TraderProfile(
+    data.profile.name,
+    data.profile.trade_count,
+    data.profile.feedback_score,
+  )
+
   return new Advertise(
     data.ad_id,
-    data.profile,
+    advertiser,
     data.temp_price,
     new Pair(assetCode, 'BTC'),
     typeOperation,
