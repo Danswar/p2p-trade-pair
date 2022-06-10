@@ -51,7 +51,7 @@ function App() {
       </Box>
       <Box>
         {ads.map((ad: { id: string }) => (
-          <div>{ad.id}</div>
+          <div key={ad.id}>{ad.id}</div>
         ))}
       </Box>
     </Layout>
