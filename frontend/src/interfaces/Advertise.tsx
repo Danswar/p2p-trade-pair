@@ -1,6 +1,6 @@
 export interface Advertiser {
   name: string;
-  tradeCount: string;
+  tradeCount: number;
   score: number;
 }
 
@@ -13,11 +13,11 @@ export interface Pair {
 export interface Advertise {
   id: number;
   advertiser: Advertiser;
-  price: string;
+  price: number;
   pair: Pair;
   typeOperation: string;
-  minAmount: string;
-  maxAmount: string;
+  minAmount: number;
+  maxAmount: number;
   paymentChannels: string[];
   publicView: string;
 }
