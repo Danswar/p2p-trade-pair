@@ -52,8 +52,10 @@ const mapRawAdToAdvertise = (
 ): Advertise => {
   const { data, actions } = rawAd
 
+  const profileName = data?.profile?.name?.split(' ')[0]
+
   const advertiser = new TraderProfile(
-    data.profile.name,
+    profileName,
     data.profile.trade_count,
     data.profile.feedback_score,
   )
