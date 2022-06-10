@@ -6,31 +6,23 @@ import Box from "@mui/system/Box";
 import AdsList from "./components/AdsList";
 import { Advertise } from "./interfaces/Advertise";
 import CurrencySelector from "./components/CurrencySelector";
-import fetchAds from "./utils/fetchAds";
+import { Divider } from "@mui/material";
+import useBestAds from "./hooks/useBestAds";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
 function App() {
-  const [ads, setAds] = useState<Advertise[]>([]);
-  const [currentAdvertise, setCurrentAdvertise] = useState<Advertise | null>(
-    null
-  );
+  const { ads, currentAdvertise, handleChangeAdvertise, searchAds } =
+    useBestAds();
   const [from, setFrom] = useState("USDT");
 
-  const handleChangeAdvertise = (currentIndex: number) => {
-    const currentAd = ads[currentIndex];
-    setCurrentAdvertise(currentAd);
-  };
-
-  const searchAds = async () => {
-    setAds(
-      await fetchAds({
-        typeOperation: "sell",
-        from,
-        to: "btc",
-        amount: "100"
-      })
-    );
+  const handleSearch = () => {
+    searchAds({
+      from,
+      to: "BTC",
+      amount: "1000",
+      typeOperation: "sell"
+    });
   };
 
   return (
@@ -42,8 +34,8 @@ function App() {
           selected={from}
           setSelected={setFrom}
         />
-        <Button onClick={searchAds} variant="contained">
-          Buscar
+        <Button onClick={handleSearch} variant="contained">
+          Buscar seller
         </Button>
       </Box>
       <Box>
