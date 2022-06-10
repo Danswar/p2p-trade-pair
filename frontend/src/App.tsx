@@ -1,15 +1,14 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
-import { Link } from "@mui/material";
+import { Link, MenuItem } from "@mui/material";
 
-import TextField from "@mui/material/TextField";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
-import mockedAds from "./mocks/ads.json";
-import { PaidRounded } from "@mui/icons-material";
 
 const BEST_ADS_URL = `http://localhost:3000`;
+const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
 type FetchAdsInput = {
   typeOperation: string;
@@ -28,12 +27,17 @@ const fetchAds = async ({ typeOperation, from, to, amount }: FetchAdsInput) => {
 
 function App() {
   const [ads, setAds] = useState([]);
+  const [from, setFrom] = useState("USDT");
+
+  const handleChangeFrom = (event: SelectChangeEvent) => {
+    setFrom(event.target.value as string);
+  };
 
   const searchAds = async () => {
     setAds(
       await fetchAds({
         typeOperation: "sell",
-        from: "usdt",
+        from,
         to: "btc",
         amount: "100"
       })
@@ -44,10 +48,11 @@ function App() {
     <Layout>
       <AppBar title="P2P Manager" />
       <Box component="form">
-        <Box>
-          <TextField label="monto" variant="standard" />
-          <TextField label="tasa" variant="standard" />
-        </Box>
+        <Select value={from} label="From" onChange={handleChangeFrom}>
+          {SUPPORTED_CURRENCIES.map((currencyCode) => (
+            <MenuItem value={currencyCode}>{currencyCode}</MenuItem>
+          ))}
+        </Select>
         <Button onClick={searchAds} variant="contained">
           Buscar
         </Button>
