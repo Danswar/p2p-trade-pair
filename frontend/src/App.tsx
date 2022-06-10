@@ -69,20 +69,19 @@ function App() {
               typeOperation,
               publicView
             }) => (
-              <div
-                key={id}
-                style={{ margin: "5px", border: "solid black 1px" }}
-              >
-                <p>
-                  {name} (<span>{tradeCount}</span> <span>{score}%</span>)
-                </p>
-                <p>
-                  {price} {symbol}
-                </p>
-                <p>{typeOperation}</p>
-                <Link href={publicView} target="blank">
-                  Go to this ad
-                </Link>
+              <div key={id}>
+                <div style={{ margin: "5px", border: "solid black 1px" }}>
+                  <p>
+                    {name} (<span>{tradeCount}</span> <span>{score}%</span>)
+                  </p>
+                  <p>
+                    {price} {symbol}
+                  </p>
+                  <p>{typeOperation}</p>
+                  <Link href={publicView} target="blank">
+                    Go to this ad
+                  </Link>
+                </div>
               </div>
             )
           )}
