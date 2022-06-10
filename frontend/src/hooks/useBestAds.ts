@@ -28,6 +28,7 @@ const useBestAds = () => {
   const [currentAdvertise, setCurrentAdvertise] = useState<Advertise | null>(
     null,
   )
+  const [currency, setCurrency] = useState('USD')
 
   const handleChangeAdvertise = (currentIndex: number) => {
     const currentAd = ads[currentIndex]
@@ -43,6 +44,8 @@ const useBestAds = () => {
     currentAdvertise,
     handleChangeAdvertise,
     searchAds,
+    currency,
+    setCurrency,
   }
 }
 

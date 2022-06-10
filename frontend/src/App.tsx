@@ -7,30 +7,36 @@ import AdSearchCard from "./components/AdSearchCard";
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
 function App() {
-  const { ads, currentAdvertise, handleChangeAdvertise, searchAds } =
-    useBestAds();
-  const [from, setFrom] = useState("USDT");
+  const {
+    ads: inputAds,
+    currentAdvertise: currentInputAd,
+    handleChangeAdvertise: handleChangeInputAd,
+    searchAds: searchInputAds,
+    currency: inputCurrency,
+    setCurrency: setInputCurrency
+  } = useBestAds();
 
-  const handleSearch = () => {
-    searchAds({
-      from,
+  const {
+    ads: outputAds,
+    currentAdvertise: currentOutputAd,
+    handleChangeAdvertise: handleChangeOutputAd,
+    searchAds: searchOutputAds,
+    currency: outputCurrency,
+    setCurrency: setOutputCurrency
+  } = useBestAds();
+
+  const handleInputSearch = () => {
+    searchInputAds({
+      from: inputCurrency,
       to: "BTC",
       amount: "1000",
       typeOperation: "sell"
     });
   };
 
-  const {
-    ads: outputAds,
-    currentAdvertise: currentOutputAd,
-    handleChangeAdvertise: handleChangeOutputAd,
-    searchAds: searchOutputAds
-  } = useBestAds();
-  const [to, setTo] = useState("USDT");
-
   const handleOutputSearch = () => {
     searchOutputAds({
-      from: to,
+      from: outputCurrency,
       to: "BTC",
       amount: "1000",
       typeOperation: "sell"
@@ -41,18 +47,16 @@ function App() {
     <Layout>
       <AppBar title="P2P Manager" />
       <AdSearchCard
-        currency={from}
-        setCurrency={setFrom}
+        currency={inputCurrency}
+        setCurrency={setInputCurrency}
         supportedCurrencies={SUPPORTED_CURRENCIES}
-        adList={ads}
-        handleChangeAdvertise={handleChangeAdvertise}
-        handleSearch={handleSearch}
+        adList={inputAds}
+        handleChangeAdvertise={handleChangeInputAd}
+        handleSearch={handleInputSearch}
       />
-      <p>{currentAdvertise?.advertiser.name}</p>
-
       <AdSearchCard
-        currency={to}
-        setCurrency={setTo}
+        currency={outputCurrency}
+        setCurrency={setOutputCurrency}
         supportedCurrencies={SUPPORTED_CURRENCIES}
         adList={outputAds}
         handleChangeAdvertise={handleChangeOutputAd}
