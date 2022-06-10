@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
 import mockedAds from "./mocks/ads.json";
+import { PaidRounded } from "@mui/icons-material";
 
 const BEST_ADS_URL = `http://localhost:3000`;
 
@@ -26,7 +27,7 @@ const fetchAds = async ({ typeOperation, from, to, amount }: FetchAdsInput) => {
 };
 
 function App() {
-  const [ads, setAds] = useState(mockedAds);
+  const [ads, setAds] = useState([]);
 
   const searchAds = async () => {
     setAds(
@@ -56,18 +57,22 @@ function App() {
           ({
             id,
             advertiser: { name, tradeCount, score },
+            pair: { symbol },
             price,
             typeOperation,
             publicView
           }) => (
             <div key={id} style={{ margin: "5px", border: "solid black 1px" }}>
-              <p>{name}</p>
               <p>
-                <span>{tradeCount}</span> <span>{score}%</span>
+                {name} (<span>{tradeCount}</span> <span>{score}%</span>)
               </p>
-              <p>{price}</p>
+              <p>
+                {price} {symbol}
+              </p>
               <p>{typeOperation}</p>
-              <Link href={publicView}>Go to this ad</Link>
+              <Link href={publicView} target="blank">
+                Go to this ad
+              </Link>
             </div>
           )
         )}
