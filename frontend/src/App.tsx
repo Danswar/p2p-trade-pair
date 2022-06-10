@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
+import { Link } from "@mui/material";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
+import mockedAds from "./mocks/ads.json";
 
 const BEST_ADS_URL = `http://localhost:3000`;
 
@@ -24,7 +26,7 @@ const fetchAds = async ({ typeOperation, from, to, amount }: FetchAdsInput) => {
 };
 
 function App() {
-  const [ads, setAds] = useState([]);
+  const [ads, setAds] = useState(mockedAds);
 
   const searchAds = async () => {
     setAds(
@@ -50,9 +52,25 @@ function App() {
         </Button>
       </Box>
       <Box>
-        {ads.map((ad: { id: string }) => (
-          <div key={ad.id}>{ad.id}</div>
-        ))}
+        {ads.map(
+          ({
+            id,
+            advertiser: { name, tradeCount, score },
+            price,
+            typeOperation,
+            publicView
+          }) => (
+            <div key={id} style={{ margin: "5px", border: "solid black 1px" }}>
+              <p>{name}</p>
+              <p>
+                <span>{tradeCount}</span> <span>{score}%</span>
+              </p>
+              <p>{price}</p>
+              <p>{typeOperation}</p>
+              <Link href={publicView}>Go to this ad</Link>
+            </div>
+          )
+        )}
       </Box>
     </Layout>
   );
