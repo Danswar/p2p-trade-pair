@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
-import { Link, MenuItem } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
-import Slider from "react-slick";
+import AdsList from "./components/AdsList";
 
 const BEST_ADS_URL = `http://localhost:3000`;
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
@@ -59,33 +59,7 @@ function App() {
         </Button>
       </Box>
       <Box>
-        <Slider>
-          {ads.map(
-            ({
-              id,
-              advertiser: { name, tradeCount, score },
-              pair: { symbol },
-              price,
-              typeOperation,
-              publicView
-            }) => (
-              <div key={id}>
-                <div style={{ margin: "5px", border: "solid black 1px" }}>
-                  <p>
-                    {name} (<span>{tradeCount}</span> <span>{score}%</span>)
-                  </p>
-                  <p>
-                    {price} {symbol}
-                  </p>
-                  <p>{typeOperation}</p>
-                  <Link href={publicView} target="blank">
-                    Go to this ad
-                  </Link>
-                </div>
-              </div>
-            )
-          )}
-        </Slider>
+        <AdsList ads={ads} />
       </Box>
     </Layout>
   );
