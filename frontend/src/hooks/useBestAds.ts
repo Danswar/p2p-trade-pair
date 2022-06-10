@@ -36,7 +36,9 @@ const useBestAds = () => {
   }
 
   const searchAds = async (params: FetchAdsInput) => {
-    setAds(await fetchAds(params))
+    setCurrentAdvertise(null)
+    const newAds = await fetchAds(params)
+    setAds(newAds)
   }
 
   return {

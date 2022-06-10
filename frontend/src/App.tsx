@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
 import useBestAds from "./hooks/useBestAds";
 import AdSearchCard from "./components/AdSearchCard";
+import { Typography } from "@mui/material";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
@@ -24,6 +25,10 @@ function App() {
     currency: outputCurrency,
     setCurrency: setOutputCurrency
   } = useBestAds();
+
+  const inputRate = currentInputAd?.price || 0;
+  const outputRate = currentOutputAd?.price || 0;
+  const rate = inputRate && outputRate ? outputRate / inputRate : 0;
 
   const handleInputSearch = () => {
     searchInputAds({
@@ -62,6 +67,9 @@ function App() {
         handleChangeAdvertise={handleChangeOutputAd}
         handleSearch={handleOutputSearch}
       />
+      <Typography variant="h1" textAlign={"center"}>
+        {rate}
+      </Typography>
     </Layout>
   );
 }
