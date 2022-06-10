@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import { Link } from "@mui/material";
 import Slider from "react-slick";
 import { Advertise } from "../../interfaces/Advertise";
@@ -8,7 +10,7 @@ interface AdsListProps {
 
 const AdsList = ({ ads }: AdsListProps) => {
   return (
-    <Slider>
+    <Slider initialSlide={0} infinite={false}>
       {ads.map(
         ({
           id,
