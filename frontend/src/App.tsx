@@ -20,6 +20,23 @@ function App() {
     });
   };
 
+  const {
+    ads: outputAds,
+    currentAdvertise: currentOutputAd,
+    handleChangeAdvertise: handleChangeOutputAd,
+    searchAds: searchOutputAds
+  } = useBestAds();
+  const [to, setTo] = useState("USDT");
+
+  const handleOutputSearch = () => {
+    searchOutputAds({
+      from: to,
+      to: "BTC",
+      amount: "1000",
+      typeOperation: "sell"
+    });
+  };
+
   return (
     <Layout>
       <AppBar title="P2P Manager" />
@@ -32,6 +49,15 @@ function App() {
         handleSearch={handleSearch}
       />
       <p>{currentAdvertise?.advertiser.name}</p>
+
+      <AdSearchCard
+        currency={to}
+        setCurrency={setTo}
+        supportedCurrencies={SUPPORTED_CURRENCIES}
+        adList={outputAds}
+        handleChangeAdvertise={handleChangeOutputAd}
+        handleSearch={handleOutputSearch}
+      />
     </Layout>
   );
 }
