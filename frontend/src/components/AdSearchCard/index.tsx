@@ -30,7 +30,7 @@ const AdSearchCard = ({
         setSelected={setCurrency}
       />
       <Button onClick={handleSearch} variant="contained">
-        Buscar seller
+        Buscar
       </Button>
       <Box>
         <AdsList ads={adList} onChange={handleChangeAdvertise} />
