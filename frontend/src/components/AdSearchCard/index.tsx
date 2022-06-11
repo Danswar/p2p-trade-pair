@@ -1,3 +1,5 @@
+import { Refresh } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/system/Box";
 import { Advertise } from "../../interfaces/Advertise";
@@ -29,9 +31,9 @@ const AdSearchCard = ({
         selected={currency}
         setSelected={setCurrency}
       />
-      <Button onClick={handleSearch} variant="contained">
-        Buscar
-      </Button>
+      <IconButton onClick={handleSearch}>
+        <Refresh />
+      </IconButton>
       <Box>
         <AdsList ads={adList} onChange={handleChangeAdvertise} />
       </Box>

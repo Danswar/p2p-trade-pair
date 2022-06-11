@@ -1,9 +1,9 @@
-import { useState } from "react";
 import Layout from "./components/Layout";
 import AppBar from "./components/AppBar";
 import useBestAds from "./hooks/useBestAds";
 import AdSearchCard from "./components/AdSearchCard";
 import { Typography } from "@mui/material";
+import { useEffect } from "react";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
@@ -47,6 +47,14 @@ function App() {
       typeOperation: "sell"
     });
   };
+
+  useEffect(() => {
+    handleInputSearch();
+  }, [inputCurrency]);
+
+  useEffect(() => {
+    handleOutputSearch();
+  }, [outputCurrency]);
 
   return (
     <Layout>
