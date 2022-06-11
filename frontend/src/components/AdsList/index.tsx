@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Link } from "@mui/material";
 import Slider from "react-slick";
@@ -11,14 +11,31 @@ interface AdsListProps {
 
 const AdsList = ({ ads, onChange }: AdsListProps) => {
   const [current, setCurrent] = useState(0);
+  const slider: { current: any } = useRef(null);
+
+  const handleChange = (index: number) => {
+    onChange(index);
+    setCurrent(index);
+  };
 
   useEffect(() => {
     onChange(current);
   }, [current]);
 
+  useEffect(() => {
+    const { slickGoTo = () => {} } = slider?.current;
+    slickGoTo(0);
+    handleChange(0);
+  }, [ads]);
+
   return (
     <>
-      <Slider initialSlide={0} infinite={false} afterChange={setCurrent}>
+      <Slider
+        ref={slider}
+        infinite={false}
+        initialSlide={0}
+        afterChange={handleChange}
+      >
         {ads.map(
           ({
             id,
