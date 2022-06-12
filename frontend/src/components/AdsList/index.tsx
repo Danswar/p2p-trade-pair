@@ -54,17 +54,19 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
                   {price} {symbol}
                 </p>
                 <p>{typeOperation}</p>
-                <Link href={publicView} target="blank">
-                  Go to this ad
-                </Link>
+                <p>
+                  <Link href={publicView} target="blank">
+                    Go to this ad
+                  </Link>
+                  <span>
+                    {current}/{ads.length}
+                  </span>
+                </p>
               </div>
             </div>
           )
         )}
       </Slider>
-      <p>
-        {current}/{ads.length}
-      </p>
     </>
   );
 };
