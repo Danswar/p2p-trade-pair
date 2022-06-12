@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import memoize from 'memoizee'
 
 import Advertise from '../../entities/Advertise'
