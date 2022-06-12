@@ -8,7 +8,8 @@ type FetchAdsInput = {
   amount: string
 }
 
-const BEST_ADS_URL = `http://localhost:3000`
+const BEST_ADS_URL =
+  process.env.REACT_APP_BACKEND_URI || `http://localhost:3000`
 
 const fetchAds = async ({
   typeOperation,
