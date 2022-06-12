@@ -13,8 +13,8 @@ const MAX_LIMIT_OF_PAGES = 10
 const MAX_AGE_CACHE = 1 * 60 * 1000
 
 const typeOperationToURL = {
-  [TypeOperation.SELL]: 'buy-bitcoins-online',
-  [TypeOperation.BUY]: 'sell-bitcoins-online',
+  [TypeOperation.BUY]: 'buy-bitcoins-online',
+  [TypeOperation.SELL]: 'sell-bitcoins-online',
 }
 
 const fetchAllAdvertises = async (
