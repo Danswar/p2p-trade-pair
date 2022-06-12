@@ -7,3 +7,9 @@ This product will be composed by following peaces:
 - Backend
 
 Each peace will be a separate deployable
+
+## Backend deploy
+
+```
+ git subtree push --prefix backend heroku master
+```
