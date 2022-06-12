@@ -84,15 +84,18 @@ const localbitcoinsP2P: Market = {
       from,
       typeOperation,
     )
-    const ads: Advertise[] = adList.map((rawAd: RawAdvertise) =>
-      mapRawAdToAdvertise(rawAd, from, typeOperation),
-    )
+    const ads: Advertise[] = adList
+      .map((rawAd: RawAdvertise) =>
+        mapRawAdToAdvertise(rawAd, from, typeOperation),
+      )
+      .filter((rawAd) => rawAd.minAmount <= rawAd.maxAmount)
+      .filter((rawAd) => rawAd.advertiser.score > 98)
+      .filter((rawAd) => rawAd.advertiser.tradeCount >= 100)
 
     const sortCriteria: (a: Advertise, b: Advertise) => number =
       typeOperation === TypeOperation.SELL
         ? (a, b) => b.price - a.price
         : (a, b) => a.price - b.price
-
     return ads.sort(sortCriteria)
   },
 }
