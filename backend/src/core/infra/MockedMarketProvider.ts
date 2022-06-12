@@ -1,7 +1,7 @@
 import Market from '../entities/Market'
 import Advertise from '../entities/Advertise'
-import TypeOperation from '../entities/TypeOperation'
 import Pair from '../entities/Pair'
+import TraderProfile from '../entities/TraderProfile'
 
 // Mocked by now
 const market: Market = {
@@ -9,19 +9,16 @@ const market: Market = {
     const ads: Advertise[] = [
       {
         id: 'id',
-        advertiser: {
-          name: 'seller name',
-          tradeCount: 500,
-          score: 100,
-        },
+        advertiser: new TraderProfile('name', 50, 10),
         price: 100,
         typeOperation: typeOperation,
         pair: new Pair('BTC', 'ARS'),
         minAmount: 10,
         maxAmount: 100,
         paymentChannels: ['Brubank'],
-        publicView: new URL('https://www.someprovider.com/seller'),
+        publicView: 'https://www.someprovider.com/seller',
         isValid: () => true,
+        toJson: () => ({}),
       },
     ]
     return ads
