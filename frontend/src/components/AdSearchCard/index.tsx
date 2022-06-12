@@ -1,7 +1,9 @@
 import { Refresh } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
-import Button from "@mui/material/Button";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/system/Box";
+import { useState } from "react";
 import { Advertise } from "../../interfaces/Advertise";
 
 import AdsList from "./../AdsList";
@@ -24,14 +26,32 @@ const AdSearchCard = ({
   handleChangeAdvertise,
   handleSearch
 }: AdSearchCardProps) => {
+  const [alignment, setAlignment] = useState("buy");
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string
+  ) => {
+    setAlignment(newAlignment);
+  };
+
   return (
     <Box component="form">
-      <CurrencySelector
-        supportedCurrencies={supportedCurrencies}
-        selected={currency}
-        setSelected={setCurrency}
-      />
+      <ToggleButtonGroup
+        color="primary"
+        value={alignment}
+        exclusive
+        onChange={handleChange}
+      >
+        <ToggleButton value="buy">Buy</ToggleButton>
+        <ToggleButton value="sell">Sell</ToggleButton>
+      </ToggleButtonGroup>
       <IconButton onClick={handleSearch}>
+        <CurrencySelector
+          supportedCurrencies={supportedCurrencies}
+          selected={currency}
+          setSelected={setCurrency}
+        />
         <Refresh />
       </IconButton>
       <Box>

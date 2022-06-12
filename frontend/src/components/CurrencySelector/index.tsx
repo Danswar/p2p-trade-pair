@@ -1,3 +1,4 @@
+import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 
@@ -16,13 +17,15 @@ const CurrencySelector = ({
     setSelected(event.target.value as string);
   };
   return (
-    <Select value={selected} label="From" onChange={handleChangeFrom}>
-      {supportedCurrencies.map((currencyCode) => (
-        <MenuItem key={currencyCode} value={currencyCode}>
-          {currencyCode}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl size="small">
+      <Select value={selected} label="From" onChange={handleChangeFrom}>
+        {supportedCurrencies.map((currencyCode) => (
+          <MenuItem key={currencyCode} value={currencyCode}>
+            {currencyCode}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
