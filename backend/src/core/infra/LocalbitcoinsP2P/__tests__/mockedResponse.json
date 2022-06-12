@@ -2253,9 +2253,5 @@
             }
         ],
         "ad_count": 50
-    },
-    "pagination": {
-        "next": "https://localbitcoins.com/buy-bitcoins-online/ved/.json?page=3",
-        "prev": "https://localbitcoins.com/buy-bitcoins-online/ved/.json?page=1"
     }
 }

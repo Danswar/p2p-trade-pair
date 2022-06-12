@@ -7,6 +7,7 @@ import Pair from '../../entities/Pair'
 import TypeOperation from '../../entities/TypeOperation'
 import TraderProfile from '../../entities/TraderProfile'
 import { GetAdsResponse, RawAdvertise } from './interfaces'
+import fetchAsJson from './utils/fetchAsJson'
 
 const BASE_URL = 'https://localbitcoins.com/'
 const MAX_LIMIT_OF_PAGES = 10
@@ -15,12 +16,6 @@ const MAX_AGE_CACHE = 1 * 60 * 1000
 const typeOperationToURL = {
   [TypeOperation.SELL]: 'buy-bitcoins-online',
   [TypeOperation.BUY]: 'sell-bitcoins-online',
-}
-
-const fetchAsJson = async <T>(url: string): Promise<T> => {
-  const response: any = await fetch(url)
-  const json: T = await response.json()
-  return json
 }
 
 const fetchAllAdvertises = async (
@@ -80,7 +75,7 @@ const mapRawAdToAdvertise = (
     minAmount,
     maxAmount,
     [data.bank_name, data.msg],
-    new URL(actions.public_view),
+    actions.public_view,
   )
 }
 

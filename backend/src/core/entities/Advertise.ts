@@ -11,7 +11,7 @@ class Advertise {
   readonly minAmount: number
   readonly maxAmount: number
   readonly paymentChannels: string[]
-  readonly publicView: URL
+  readonly publicView: string
 
   constructor(
     id: string,
@@ -22,7 +22,7 @@ class Advertise {
     minAmount: number,
     maxAmount: number,
     paymentChannels: string[],
-    publicView: URL,
+    publicView: string,
   ) {
     if (!id) throw new Error('Id is required and cannot be empty')
     if (!paymentChannels.length)
@@ -53,7 +53,7 @@ class Advertise {
       minAmount: this.minAmount,
       maxAmount: this.maxAmount,
       paymentChannels: this.paymentChannels,
-      publicView: this.publicView,
+      publicView: this.publicView.toString,
     }
   }
 }
