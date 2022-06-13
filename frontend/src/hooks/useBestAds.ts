@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Advertise } from '../interfaces/Advertise'
 
 type FetchAdsInput = {
@@ -29,18 +29,36 @@ const useBestAds = () => {
   const [currentAdvertise, setCurrentAdvertise] = useState<Advertise | null>(
     null,
   )
+  const [typeOperation, setTypeOperation] = useState('buy')
   const [currency, setCurrency] = useState('USDT')
+
+  const searchAds = async () => {
+    setCurrentAdvertise(null)
+    const newAds = await fetchAds({
+      from: currency,
+      to: 'BTC',
+      amount: '1000',
+      typeOperation,
+    })
+    setAds(newAds)
+  }
 
   const handleChangeAdvertise = (currentIndex: number) => {
     const currentAd = ads[currentIndex]
     setCurrentAdvertise(currentAd)
   }
 
-  const searchAds = async (params: FetchAdsInput) => {
-    setCurrentAdvertise(null)
-    const newAds = await fetchAds(params)
-    setAds(newAds)
+  const handleChangeTypeOperation = (type: string) => {
+    setTypeOperation(type)
   }
+
+  const handleChangeCurrency = (currency: string) => {
+    setCurrency(currency)
+  }
+
+  useEffect(() => {
+    searchAds()
+  }, [currency, typeOperation])
 
   return {
     ads,
@@ -48,7 +66,9 @@ const useBestAds = () => {
     handleChangeAdvertise,
     searchAds,
     currency,
-    setCurrency,
+    handleChangeCurrency,
+    typeOperation,
+    handleChangeTypeOperation,
   }
 }
 

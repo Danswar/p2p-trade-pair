@@ -16,6 +16,8 @@ interface AdSearchCardProps {
   adList: Advertise[];
   handleChangeAdvertise: (current: number) => void;
   handleSearch: () => void;
+  typeOperation: string;
+  setTypeOperation: (type: string) => void;
 }
 
 const AdSearchCard = ({
@@ -24,22 +26,22 @@ const AdSearchCard = ({
   supportedCurrencies,
   adList,
   handleChangeAdvertise,
-  handleSearch
+  handleSearch,
+  typeOperation,
+  setTypeOperation
 }: AdSearchCardProps) => {
-  const [alignment, setAlignment] = useState("buy");
-
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string
   ) => {
-    setAlignment(newAlignment);
+    setTypeOperation(newAlignment);
   };
 
   return (
     <Box component="form">
       <ToggleButtonGroup
         color="primary"
-        value={alignment}
+        value={typeOperation}
         exclusive
         onChange={handleChange}
       >

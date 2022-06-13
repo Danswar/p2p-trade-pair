@@ -14,7 +14,9 @@ function App() {
     handleChangeAdvertise: handleChangeInputAd,
     searchAds: searchInputAds,
     currency: inputCurrency,
-    setCurrency: setInputCurrency
+    handleChangeCurrency: setInputCurrency,
+    typeOperation: inputTypeOperation,
+    handleChangeTypeOperation: setInputTypeOperation
   } = useBestAds();
 
   const {
@@ -23,38 +25,14 @@ function App() {
     handleChangeAdvertise: handleChangeOutputAd,
     searchAds: searchOutputAds,
     currency: outputCurrency,
-    setCurrency: setOutputCurrency
+    handleChangeCurrency: setOutputCurrency,
+    typeOperation: outputTypeOperation,
+    handleChangeTypeOperation: setOutputTypeOperation
   } = useBestAds();
 
   const inputRate = currentInputAd?.price || 0;
   const outputRate = currentOutputAd?.price || 0;
   const rate = inputRate && outputRate ? outputRate / inputRate : 0;
-
-  const handleInputSearch = () => {
-    searchInputAds({
-      from: inputCurrency,
-      to: "BTC",
-      amount: "1000",
-      typeOperation: "sell"
-    });
-  };
-
-  const handleOutputSearch = () => {
-    searchOutputAds({
-      from: outputCurrency,
-      to: "BTC",
-      amount: "1000",
-      typeOperation: "sell"
-    });
-  };
-
-  useEffect(() => {
-    handleInputSearch();
-  }, [inputCurrency]);
-
-  useEffect(() => {
-    handleOutputSearch();
-  }, [outputCurrency]);
 
   return (
     <Layout>
@@ -65,7 +43,9 @@ function App() {
         supportedCurrencies={SUPPORTED_CURRENCIES}
         adList={inputAds}
         handleChangeAdvertise={handleChangeInputAd}
-        handleSearch={handleInputSearch}
+        handleSearch={searchInputAds}
+        typeOperation={inputTypeOperation}
+        setTypeOperation={setInputTypeOperation}
       />
       <AdSearchCard
         currency={outputCurrency}
@@ -73,7 +53,9 @@ function App() {
         supportedCurrencies={SUPPORTED_CURRENCIES}
         adList={outputAds}
         handleChangeAdvertise={handleChangeOutputAd}
-        handleSearch={handleOutputSearch}
+        handleSearch={searchOutputAds}
+        typeOperation={outputTypeOperation}
+        setTypeOperation={setOutputTypeOperation}
       />
       <Typography variant="h1" textAlign={"center"}>
         {rate}
