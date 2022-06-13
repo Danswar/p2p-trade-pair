@@ -58,6 +58,7 @@ const useBestAds = () => {
 
   useEffect(() => {
     searchAds()
+    // eslint-disable-next-line
   }, [currency, typeOperation])
 
   return {

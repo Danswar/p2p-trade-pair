@@ -3,7 +3,6 @@ import AppBar from "./components/AppBar";
 import useBestAds from "./hooks/useBestAds";
 import AdSearchCard from "./components/AdSearchCard";
 import { Typography } from "@mui/material";
-import { useEffect } from "react";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 

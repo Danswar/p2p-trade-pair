@@ -13,6 +13,7 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
   const [current, setCurrent] = useState(0);
   const slider: { current: any } = useRef(null);
 
+  // eslint-disable-next-line
   const handleChange = (index: number) => {
     onChange(index);
     setCurrent(index);
@@ -20,13 +21,13 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
 
   useEffect(() => {
     onChange(current);
-  }, [current]);
+  }, [current, onChange]);
 
   useEffect(() => {
     const { slickGoTo = () => {} } = slider?.current;
     slickGoTo(0);
     handleChange(0);
-  }, [ads]);
+  }, [ads, handleChange]);
 
   return (
     <>

@@ -25,7 +25,7 @@
   },
   "scripts": {
     "deploy": "export REACT_APP_BACKEND_URI=https://market-services-gateway.herokuapp.com && npm run build && gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "export PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

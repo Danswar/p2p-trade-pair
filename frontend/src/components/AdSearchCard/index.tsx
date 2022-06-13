@@ -1,9 +1,8 @@
 import { Refresh } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/system/Box";
-import { useState } from "react";
 import { Advertise } from "../../interfaces/Advertise";
 
 import AdsList from "./../AdsList";
@@ -39,6 +38,7 @@ const AdSearchCard = ({
 
   return (
     <Box component="form">
+      <TextField size="small" />
       <ToggleButtonGroup
         color="primary"
         value={typeOperation}
