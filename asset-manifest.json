@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/p2p-trade-pair/static/js/main.dbc54d8f.js",
+    "main.js": "/p2p-trade-pair/static/js/main.a15313ab.js",
     "static/js/787.cda612ba.chunk.js": "/p2p-trade-pair/static/js/787.cda612ba.chunk.js",
     "index.html": "/p2p-trade-pair/index.html",
-    "main.dbc54d8f.js.map": "/p2p-trade-pair/static/js/main.dbc54d8f.js.map",
+    "main.a15313ab.js.map": "/p2p-trade-pair/static/js/main.a15313ab.js.map",
     "787.cda612ba.chunk.js.map": "/p2p-trade-pair/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.dbc54d8f.js"
+    "static/js/main.a15313ab.js"
   ]
 }
