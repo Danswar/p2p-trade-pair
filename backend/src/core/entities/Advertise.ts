@@ -25,8 +25,6 @@ class Advertise {
     publicView: string,
   ) {
     if (!id) throw new Error('Id is required and cannot be empty')
-    if (!paymentChannels.length)
-      throw new Error('Payment channels cannot be empty')
 
     this.id = id
     this.advertiser = advertiser
