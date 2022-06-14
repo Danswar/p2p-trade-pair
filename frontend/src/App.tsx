@@ -57,7 +57,7 @@ function App() {
         setTypeOperation={setOutputTypeOperation}
       />
       <Typography variant="h1" textAlign={"center"}>
-        {rate}
+        {rate.toFixed(4)}
       </Typography>
     </Layout>
   );

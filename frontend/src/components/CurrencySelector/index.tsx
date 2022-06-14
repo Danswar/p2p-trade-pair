@@ -1,6 +1,14 @@
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { MenuItem } from "@mui/material";
+import { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  List,
+  ListItem,
+  ListItemText
+} from "@mui/material";
+import { ArrowDropDown } from "@mui/icons-material";
 
 interface CurrencySelectorProps {
   supportedCurrencies: string[];
@@ -13,19 +21,37 @@ const CurrencySelector = ({
   selected,
   setSelected
 }: CurrencySelectorProps) => {
-  const handleChangeFrom = (event: SelectChangeEvent) => {
-    setSelected(event.target.value as string);
+  const [open, setOpen] = useState(false);
+
+  const handleSelected = (currencyCode: string) => {
+    setSelected(currencyCode);
+    setOpen(false);
   };
+
   return (
-    <FormControl size="small">
-      <Select value={selected} label="From" onChange={handleChangeFrom}>
-        {supportedCurrencies.map((currencyCode) => (
-          <MenuItem key={currencyCode} value={currencyCode}>
-            {currencyCode}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <>
+      <Button onClick={() => setOpen(true)} endIcon={<ArrowDropDown />}>
+        {selected}
+      </Button>
+      {open && (
+        <Dialog open={open}>
+          <DialogTitle>Select a currency</DialogTitle>
+          <DialogContent>
+            <List>
+              {supportedCurrencies.map((currencyCode) => (
+                <ListItem
+                  key={currencyCode}
+                  button
+                  onClick={() => handleSelected(currencyCode)}
+                >
+                  <ListItemText>{currencyCode}</ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          </DialogContent>
+        </Dialog>
+      )}
+    </>
   );
 };
 

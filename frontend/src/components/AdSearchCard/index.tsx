@@ -1,5 +1,5 @@
 import { Refresh } from "@mui/icons-material";
-import { IconButton, TextField } from "@mui/material";
+import { IconButton, InputAdornment, OutlinedInput } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/system/Box";
@@ -37,23 +37,32 @@ const AdSearchCard = ({
   };
 
   return (
-    <Box component="form">
-      <TextField size="small" />
+    <Box component="form" sx={{ padding: 1 }}>
+      <OutlinedInput
+        placeholder="Input the amount"
+        size="small"
+        sx={{ paddingRight: "10px" }}
+        endAdornment={
+          <InputAdornment position="end">
+            <CurrencySelector
+              supportedCurrencies={supportedCurrencies}
+              selected={currency}
+              setSelected={setCurrency}
+            />
+          </InputAdornment>
+        }
+      />
       <ToggleButtonGroup
         color="primary"
         value={typeOperation}
         exclusive
         onChange={handleChange}
+        size="small"
       >
         <ToggleButton value="buy">Buy</ToggleButton>
         <ToggleButton value="sell">Sell</ToggleButton>
       </ToggleButtonGroup>
       <IconButton onClick={handleSearch}>
-        <CurrencySelector
-          supportedCurrencies={supportedCurrencies}
-          selected={currency}
-          setSelected={setCurrency}
-        />
         <Refresh />
       </IconButton>
       <Box>
