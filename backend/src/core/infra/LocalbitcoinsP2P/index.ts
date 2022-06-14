@@ -88,7 +88,9 @@ const localbitcoinsP2P: Market = {
       .map((rawAd: RawAdvertise) =>
         mapRawAdToAdvertise(rawAd, from, typeOperation),
       )
-      .filter((rawAd) => rawAd.minAmount <= rawAd.maxAmount)
+      .filter(
+        (rawAd) => rawAd.minAmount <= rawAd.maxAmount && rawAd.maxAmount !== 0,
+      )
       .filter((rawAd) => rawAd.advertiser.score > 98)
       .filter((rawAd) => rawAd.advertiser.tradeCount >= 100)
 
