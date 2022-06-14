@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Fragment } from "react";
 import Slider from "react-slick";
 import { Advertise } from "../../interfaces/Advertise";
 import AdDetails from "./AdDetails";
@@ -49,18 +49,20 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
             typeOperation,
             publicView
           }) => (
-            <AdDetails
-              id={id}
-              name={name}
-              tradeCount={tradeCount}
-              score={score}
-              price={price}
-              symbol={symbol}
-              minAmount={minAmount}
-              maxAmount={maxAmount}
-              typeOperation={typeOperation}
-              publicView={publicView}
-            />
+            <Fragment key={id}>
+              <AdDetails
+                id={id}
+                name={name}
+                tradeCount={tradeCount}
+                score={score}
+                price={price}
+                symbol={symbol}
+                minAmount={minAmount}
+                maxAmount={maxAmount}
+                typeOperation={typeOperation}
+                publicView={publicView}
+              />
+            </Fragment>
           )
         )}
       </Slider>

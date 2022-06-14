@@ -16,12 +16,12 @@ const fetchAds = async ({
   from,
   to,
   amount,
-}: FetchAdsInput): Promise<Advertise[]> => {
+}: FetchAdsInput): Promise<{ data: Advertise[]; meta: any }> => {
   const res = await fetch(
     `${BEST_ADS_URL}/${typeOperation}/${from}/${to}/${amount}`,
   )
-  const { data }: { data: Advertise[] } = await res.json()
-  return data
+  const { data, meta }: { data: Advertise[]; meta: any } = await res.json()
+  return { data, meta }
 }
 
 const useBestAds = () => {
@@ -31,16 +31,18 @@ const useBestAds = () => {
   )
   const [typeOperation, setTypeOperation] = useState('buy')
   const [currency, setCurrency] = useState('USDT')
+  const [filters, setFilters] = useState({ availablePaymentChannels: [] })
 
   const searchAds = async () => {
     setCurrentAdvertise(null)
-    const newAds = await fetchAds({
+    const { data: newAds, meta } = await fetchAds({
       from: currency,
       to: 'BTC',
       amount: '1000',
       typeOperation,
     })
     setAds(newAds)
+    setFilters({ availablePaymentChannels: meta.availablePaymentChannels })
   }
 
   const handleChangeAdvertise = (currentIndex: number) => {
@@ -70,6 +72,7 @@ const useBestAds = () => {
     handleChangeCurrency,
     typeOperation,
     handleChangeTypeOperation,
+    filters,
   }
 }
 

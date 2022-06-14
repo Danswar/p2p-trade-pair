@@ -1,8 +1,9 @@
-import { FilterAlt, Refresh } from "@mui/icons-material";
+import { Refresh } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import Box from "@mui/system/Box";
 
 import { Advertise } from "../../interfaces/Advertise";
+import PaymentChannelFilter from "../PaymentChannelFilter";
 import TypeOperationToggle from "../TypeOperationToggle";
 import AdsList from "./../AdsList";
 import CurrencySelector from "./../CurrencySelector";
@@ -16,6 +17,9 @@ interface AdSearchCardProps {
   handleSearch: () => void;
   typeOperation: string;
   setTypeOperation: (type: string) => void;
+  filters: {
+    availablePaymentChannels: string[];
+  };
 }
 
 const AdSearchCard = ({
@@ -26,7 +30,8 @@ const AdSearchCard = ({
   handleChangeAdvertise,
   handleSearch,
   typeOperation,
-  setTypeOperation
+  setTypeOperation,
+  filters: { availablePaymentChannels = [] }
 }: AdSearchCardProps) => {
   return (
     <Box component="form" sx={{ padding: 1 }}>
@@ -55,9 +60,11 @@ const AdSearchCard = ({
           <IconButton onClick={handleSearch}>
             <Refresh />
           </IconButton>
-          <IconButton onClick={() => {}}>
-            <FilterAlt />
-          </IconButton>
+          <PaymentChannelFilter
+            selected={availablePaymentChannels}
+            setSelected={() => {}}
+            filterOptions={availablePaymentChannels}
+          />
         </Box>
       </Box>
       <Box>
