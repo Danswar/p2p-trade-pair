@@ -30,7 +30,7 @@ const AdDetails = ({
 }: AdDetailsProps) => {
   return (
     <Card key={id}>
-      <CardContent>
+      <CardContent sx={{ paddingBottom: "15px" }}>
         <Box
           sx={{
             display: "flex",
@@ -76,25 +76,25 @@ const AdDetails = ({
                 {minAmount} - {maxAmount}
               </Typography>
             </Box>
-            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-              {paymentChannels.map((channelName) => (
-                <Box
-                  sx={{
-                    border: "1px grey solid",
-                    margin: "2px",
-                    padding: "0 2px"
-                  }}
-                >
-                  <Typography variant="caption">{channelName}</Typography>
-                </Box>
-              ))}
-            </Box>
           </Box>
           <Box sx={{ alignSelf: "flex-end" }}>
             <Button variant="contained" href={publicView} target="blank">
               {typeOperation}
             </Button>
           </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexWrap: "wrap", marginTop: "10px" }}>
+          {paymentChannels.map((channelName) => (
+            <Box
+              sx={{
+                border: "1px grey solid",
+                margin: "2px",
+                padding: "0 2px"
+              }}
+            >
+              <Typography variant="caption">{channelName}</Typography>
+            </Box>
+          ))}
         </Box>
       </CardContent>
     </Card>
