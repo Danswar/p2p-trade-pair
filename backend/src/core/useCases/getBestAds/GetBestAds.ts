@@ -12,6 +12,9 @@ export interface GetBestAdsInputPort {
 
 export interface GetBestAdsOutputPort {
   data: Advertise[]
+  meta: {
+    availablePaymentChannels: string[]
+  }
 }
 
 class GetBestAds extends UseCase<GetBestAdsInputPort, GetBestAdsOutputPort> {
@@ -29,7 +32,9 @@ class GetBestAds extends UseCase<GetBestAdsInputPort, GetBestAdsOutputPort> {
       typeOperation,
     )
 
-    return { data: ads }
+    const availablePaymentChannels = await this.marketManager.getAvailablePaymentChannels()
+
+    return { data: ads, meta: { availablePaymentChannels } }
   }
 }
 

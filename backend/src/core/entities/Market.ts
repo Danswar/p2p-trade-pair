@@ -7,6 +7,7 @@ interface Market {
     amount: number,
     typeOperation: TypeOperation,
   ): Promise<Advertise[]>
+  getAvailablePaymentChannels(): Promise<string[]>
 }
 
 export default Market

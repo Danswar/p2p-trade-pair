@@ -23,6 +23,9 @@ const market: Market = {
     ]
     return ads
   },
+  async getAvailablePaymentChannels() {
+    return ['']
+  },
 }
 
 export default market

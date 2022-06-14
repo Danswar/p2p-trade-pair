@@ -3,7 +3,8 @@ import memoize from 'memoizee'
 import Advertise from '../../entities/Advertise'
 import Market from '../../entities/Market'
 import TypeOperation from '../../entities/TypeOperation'
-import { GetAdsResponse, RawAdvertise } from './interfaces'
+import { GetAdsResponse, RawAdvertise } from './entities/interfaces'
+import paymentChannels from './entities/paymentChannels'
 import fetchAsJson from './utils/fetchAsJson'
 import mapRawAdToAdvertise from './utils/mapRawAdToAdvertise'
 
@@ -62,6 +63,9 @@ const localbitcoinsP2P: Market = {
         ? (a, b) => b.price - a.price
         : (a, b) => a.price - b.price
     return ads.sort(sortCriteria)
+  },
+  async getAvailablePaymentChannels() {
+    return Object.keys(paymentChannels)
   },
 }
 
