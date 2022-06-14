@@ -16,6 +16,7 @@ describe('LocalbitcoinsP2P Market', () => {
       'BTC',
       1000,
       TypeOperation.SELL,
+      [],
     )
 
     // fs.writeFile('here.json', JSON.stringify(ads), {}, () => {})
@@ -30,6 +31,7 @@ describe('LocalbitcoinsP2P Market', () => {
       'BTC',
       1000,
       TypeOperation.SELL,
+      [],
     )
 
     const prices = ads.map((ad) => ad.price)
@@ -45,6 +47,7 @@ describe('LocalbitcoinsP2P Market', () => {
       'BTC',
       1000,
       TypeOperation.BUY,
+      [],
     )
 
     const prices = ads.map((ad) => ad.price)
