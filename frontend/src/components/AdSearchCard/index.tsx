@@ -1,5 +1,5 @@
 import { FilterAlt, Refresh } from "@mui/icons-material";
-import { IconButton, InputAdornment, OutlinedInput } from "@mui/material";
+import { IconButton } from "@mui/material";
 import Box from "@mui/system/Box";
 
 import { Advertise } from "../../interfaces/Advertise";
@@ -30,21 +30,6 @@ const AdSearchCard = ({
 }: AdSearchCardProps) => {
   return (
     <Box component="form" sx={{ padding: 1 }}>
-      <OutlinedInput
-        placeholder="Input the amount"
-        size="small"
-        fullWidth
-        sx={{ paddingRight: "10px" }}
-        endAdornment={
-          <InputAdornment position="end">
-            <CurrencySelector
-              supportedCurrencies={supportedCurrencies}
-              selected={currency}
-              setSelected={setCurrency}
-            />
-          </InputAdornment>
-        }
-      />
       <Box
         sx={{
           display: "flex",
@@ -57,6 +42,13 @@ const AdSearchCard = ({
           <TypeOperationToggle
             typeOperation={typeOperation}
             onChange={setTypeOperation}
+          />
+        </Box>
+        <Box>
+          <CurrencySelector
+            supportedCurrencies={supportedCurrencies}
+            selected={currency}
+            setSelected={setCurrency}
           />
         </Box>
         <Box>

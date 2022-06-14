@@ -34,7 +34,7 @@ const CurrencySelector = ({
         {selected}
       </Button>
       {open && (
-        <Dialog open={open}>
+        <Dialog open={open} disableScrollLock>
           <DialogTitle>Select a currency</DialogTitle>
           <DialogContent>
             <List>
