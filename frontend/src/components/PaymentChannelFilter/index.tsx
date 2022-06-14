@@ -37,6 +37,9 @@ const PaymentChannelFilter = ({
         <DialogTitle>Select a channels</DialogTitle>
         <DialogContent>
           <List>
+            <ListItem button onClick={() => handleSelected("")}>
+              <ListItemText>All</ListItemText>
+            </ListItem>
             {filterOptions.map((filterLabel) => (
               <ListItem
                 key={filterLabel}
