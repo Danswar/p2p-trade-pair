@@ -43,7 +43,7 @@ const memoFetchAllAdvertises = memoize(fetchAllAdvertises, {
 })
 
 const localbitcoinsP2P: Market = {
-  async getAdvertises(from, to, amount, typeOperation) {
+  async getAdvertises(from, to, amount, typeOperation, paymentChannels) {
     const adList: RawAdvertise[] = await memoFetchAllAdvertises(
       from,
       typeOperation,

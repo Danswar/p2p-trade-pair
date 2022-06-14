@@ -3,7 +3,7 @@ import TypeOperation from '../../core/entities/TypeOperation'
 import getBestAds from '../../core/useCases/getBestAds'
 
 export default async (req: Request, res: Response) => {
-  const { from, to, amount, typeOperation } = req.body
+  const { from, to, amount, typeOperation, paymentChannels } = req.body
 
   if (!from || !from.length || !to || !to.length) {
     return res.status(400).json({
@@ -33,6 +33,7 @@ export default async (req: Request, res: Response) => {
     to,
     amount: Number(amount),
     typeOperation: typeOperation.toUpperCase() as TypeOperation,
+    paymentChannels,
   })
 
   return res.json(bestAds)

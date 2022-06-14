@@ -8,6 +8,7 @@ export interface GetBestAdsInputPort {
   to: string
   amount: number
   typeOperation: TypeOperation
+  paymentChannels: string[]
 }
 
 export interface GetBestAdsOutputPort {
@@ -23,13 +24,14 @@ class GetBestAds extends UseCase<GetBestAdsInputPort, GetBestAdsOutputPort> {
   }
 
   async execute(params: GetBestAdsInputPort): Promise<GetBestAdsOutputPort> {
-    const { from, to, amount, typeOperation } = params
+    const { from, to, amount, typeOperation, paymentChannels } = params
 
     const ads = await this.marketManager.getAdvertises(
       from,
       to,
       amount,
       typeOperation,
+      paymentChannels,
     )
 
     const availablePaymentChannels = await this.marketManager.getAvailablePaymentChannels()

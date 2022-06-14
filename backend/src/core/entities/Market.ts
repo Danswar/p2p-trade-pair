@@ -6,6 +6,7 @@ interface Market {
     to: string,
     amount: number,
     typeOperation: TypeOperation,
+    paymentChannels: string[],
   ): Promise<Advertise[]>
   getAvailablePaymentChannels(): Promise<string[]>
 }
