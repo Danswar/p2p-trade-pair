@@ -11,6 +11,7 @@ interface AdDetailsProps {
   minAmount: number;
   maxAmount: number;
   typeOperation: string;
+  paymentChannels: string[];
   publicView: string;
 }
 
@@ -24,7 +25,8 @@ const AdDetails = ({
   minAmount,
   maxAmount,
   typeOperation,
-  publicView
+  publicView,
+  paymentChannels
 }: AdDetailsProps) => {
   return (
     <Card key={id}>
@@ -73,6 +75,19 @@ const AdDetails = ({
               <Typography variant="caption">
                 {minAmount} - {maxAmount}
               </Typography>
+            </Box>
+            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+              {paymentChannels.map((channelName) => (
+                <Box
+                  sx={{
+                    border: "1px grey solid",
+                    margin: "2px",
+                    padding: "0 2px"
+                  }}
+                >
+                  <Typography variant="caption">{channelName}</Typography>
+                </Box>
+              ))}
             </Box>
           </Box>
           <Box sx={{ alignSelf: "flex-end" }}>

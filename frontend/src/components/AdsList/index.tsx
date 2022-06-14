@@ -47,6 +47,7 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
             minAmount,
             maxAmount,
             typeOperation,
+            paymentChannels,
             publicView
           }) => (
             <Fragment key={id}>
@@ -61,6 +62,7 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
                 maxAmount={maxAmount}
                 typeOperation={typeOperation}
                 publicView={publicView}
+                paymentChannels={paymentChannels}
               />
             </Fragment>
           )
