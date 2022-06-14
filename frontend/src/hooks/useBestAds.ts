@@ -6,6 +6,7 @@ type FetchAdsInput = {
   from: string
   to: string
   amount: string
+  paymentChannels: string[]
 }
 
 const BEST_ADS_URL =
@@ -16,10 +17,20 @@ const fetchAds = async ({
   from,
   to,
   amount,
+  paymentChannels,
 }: FetchAdsInput): Promise<{ data: Advertise[]; meta: any }> => {
-  const res = await fetch(
-    `${BEST_ADS_URL}/${typeOperation}/${from}/${to}/${amount}`,
-  )
+  const res = await fetch(`${BEST_ADS_URL}/getBestAds`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      typeOperation,
+      from,
+      to,
+      amount,
+      paymentChannels,
+    }),
+  })
+
   const { data, meta }: { data: Advertise[]; meta: any } = await res.json()
   return { data, meta }
 }
@@ -31,7 +42,8 @@ const useBestAds = () => {
   )
   const [typeOperation, setTypeOperation] = useState('buy')
   const [currency, setCurrency] = useState('USDT')
-  const [filters, setFilters] = useState({ availablePaymentChannels: [] })
+  const [filters, setFilters] = useState([])
+  const [selectedFilter, setSelectedFilter] = useState('')
 
   const searchAds = async () => {
     setCurrentAdvertise(null)
@@ -40,9 +52,10 @@ const useBestAds = () => {
       to: 'BTC',
       amount: '1000',
       typeOperation,
+      paymentChannels: [selectedFilter],
     })
     setAds(newAds)
-    setFilters({ availablePaymentChannels: meta.availablePaymentChannels })
+    setFilters(meta.availablePaymentChannels)
   }
 
   const handleChangeAdvertise = (currentIndex: number) => {
@@ -58,10 +71,14 @@ const useBestAds = () => {
     setCurrency(currency)
   }
 
+  const handleChangeFilters = (selectedFilter: string) => {
+    setSelectedFilter(selectedFilter)
+  }
+
   useEffect(() => {
     searchAds()
     // eslint-disable-next-line
-  }, [currency, typeOperation])
+  }, [currency, typeOperation, selectedFilter])
 
   return {
     ads,
@@ -73,6 +90,8 @@ const useBestAds = () => {
     typeOperation,
     handleChangeTypeOperation,
     filters,
+    selectedFilter,
+    handleChangeFilters,
   }
 }
 

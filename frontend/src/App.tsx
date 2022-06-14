@@ -17,7 +17,9 @@ function App() {
     handleChangeCurrency: setInputCurrency,
     typeOperation: inputTypeOperation,
     handleChangeTypeOperation: setInputTypeOperation,
-    filters: inputFilters
+    filters: inputFilters,
+    selectedFilter: inputSelectedFilter,
+    handleChangeFilters: handleInputChangeFilters
   } = useBestAds();
 
   const {
@@ -29,7 +31,9 @@ function App() {
     handleChangeCurrency: setOutputCurrency,
     typeOperation: outputTypeOperation,
     handleChangeTypeOperation: setOutputTypeOperation,
-    filters: outputFilters
+    filters: outputFilters,
+    selectedFilter: outputSelectedFilter,
+    handleChangeFilters: handleOutputChangeFilters
   } = useBestAds();
 
   const inputRate = currentInputAd?.price || 0;
@@ -49,6 +53,8 @@ function App() {
         typeOperation={inputTypeOperation}
         setTypeOperation={setInputTypeOperation}
         filters={inputFilters}
+        selectedFilter={inputSelectedFilter}
+        handleChangeFilters={handleInputChangeFilters}
       />
       <AdSearchCard
         currency={outputCurrency}
@@ -60,6 +66,8 @@ function App() {
         typeOperation={outputTypeOperation}
         setTypeOperation={setOutputTypeOperation}
         filters={outputFilters}
+        selectedFilter={outputSelectedFilter}
+        handleChangeFilters={handleOutputChangeFilters}
       />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Typography variant="h4" textAlign={"center"}>

@@ -2,16 +2,8 @@ import { Request, Response } from 'express'
 import TypeOperation from '../../core/entities/TypeOperation'
 import getBestAds from '../../core/useCases/getBestAds'
 
-interface GetBestAdsRequest
-  extends Request<{
-    from: string
-    to: string
-    amount: string
-    typeOperation: string | TypeOperation
-  }> {}
-
-export default async (req: GetBestAdsRequest, res: Response) => {
-  const { from, to, amount, typeOperation } = req.params
+export default async (req: Request, res: Response) => {
+  const { from, to, amount, typeOperation } = req.body
 
   if (!from || !from.length || !to || !to.length) {
     return res.status(400).json({

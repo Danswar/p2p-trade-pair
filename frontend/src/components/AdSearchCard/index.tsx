@@ -17,9 +17,9 @@ interface AdSearchCardProps {
   handleSearch: () => void;
   typeOperation: string;
   setTypeOperation: (type: string) => void;
-  filters: {
-    availablePaymentChannels: string[];
-  };
+  filters: string[];
+  selectedFilter: string;
+  handleChangeFilters: (selected: string) => void;
 }
 
 const AdSearchCard = ({
@@ -31,7 +31,9 @@ const AdSearchCard = ({
   handleSearch,
   typeOperation,
   setTypeOperation,
-  filters: { availablePaymentChannels = [] }
+  filters,
+  selectedFilter,
+  handleChangeFilters
 }: AdSearchCardProps) => {
   return (
     <Box component="form" sx={{ padding: 1 }}>
@@ -61,9 +63,9 @@ const AdSearchCard = ({
             <Refresh />
           </IconButton>
           <PaymentChannelFilter
-            selected={availablePaymentChannels}
-            setSelected={() => {}}
-            filterOptions={availablePaymentChannels}
+            selected={selectedFilter}
+            setSelected={handleChangeFilters}
+            filterOptions={filters}
           />
         </Box>
       </Box>

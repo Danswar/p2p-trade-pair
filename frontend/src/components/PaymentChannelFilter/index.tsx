@@ -11,8 +11,8 @@ import {
 import { FilterAlt } from "@mui/icons-material";
 
 interface PaymentChannelFilterProps {
-  selected: string[];
-  setSelected: (filters: string[]) => void;
+  selected: string;
+  setSelected: (filter: string) => void;
   filterOptions: string[];
 }
 
@@ -24,7 +24,7 @@ const PaymentChannelFilter = ({
   const [open, setOpen] = useState(false);
 
   const handleSelected = (filterLabel: string) => {
-    setSelected(selected);
+    setSelected(filterLabel);
     setOpen(false);
   };
 
