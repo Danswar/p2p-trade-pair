@@ -1,10 +1,9 @@
-import { Refresh } from "@mui/icons-material";
+import { FilterAlt, Refresh } from "@mui/icons-material";
 import { IconButton, InputAdornment, OutlinedInput } from "@mui/material";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Box from "@mui/system/Box";
-import { Advertise } from "../../interfaces/Advertise";
 
+import { Advertise } from "../../interfaces/Advertise";
+import TypeOperationToggle from "../TypeOperationToggle";
 import AdsList from "./../AdsList";
 import CurrencySelector from "./../CurrencySelector";
 
@@ -29,18 +28,12 @@ const AdSearchCard = ({
   typeOperation,
   setTypeOperation
 }: AdSearchCardProps) => {
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string
-  ) => {
-    setTypeOperation(newAlignment);
-  };
-
   return (
     <Box component="form" sx={{ padding: 1 }}>
       <OutlinedInput
         placeholder="Input the amount"
         size="small"
+        fullWidth
         sx={{ paddingRight: "10px" }}
         endAdornment={
           <InputAdornment position="end">
@@ -52,19 +45,29 @@ const AdSearchCard = ({
           </InputAdornment>
         }
       />
-      <ToggleButtonGroup
-        color="primary"
-        value={typeOperation}
-        exclusive
-        onChange={handleChange}
-        size="small"
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: "5px"
+        }}
       >
-        <ToggleButton value="buy">Buy</ToggleButton>
-        <ToggleButton value="sell">Sell</ToggleButton>
-      </ToggleButtonGroup>
-      <IconButton onClick={handleSearch}>
-        <Refresh />
-      </IconButton>
+        <Box>
+          <TypeOperationToggle
+            typeOperation={typeOperation}
+            onChange={setTypeOperation}
+          />
+        </Box>
+        <Box>
+          <IconButton onClick={handleSearch}>
+            <Refresh />
+          </IconButton>
+          <IconButton onClick={() => {}}>
+            <FilterAlt />
+          </IconButton>
+        </Box>
+      </Box>
       <Box>
         <AdsList ads={adList} onChange={handleChangeAdvertise} />
       </Box>
