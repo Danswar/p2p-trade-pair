@@ -52,7 +52,7 @@ const useBestAds = () => {
       to: 'BTC',
       amount: '1000',
       typeOperation,
-      paymentChannels: [selectedFilter],
+      paymentChannels: [selectedFilter].filter(Boolean),
     })
     setAds(newAds)
     setFilters(meta.availablePaymentChannels)
@@ -69,6 +69,7 @@ const useBestAds = () => {
 
   const handleChangeCurrency = (currency: string) => {
     setCurrency(currency)
+    setSelectedFilter('')
   }
 
   const handleChangeFilters = (selectedFilter: string) => {

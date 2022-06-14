@@ -58,11 +58,20 @@ const localbitcoinsP2P: Market = {
       .filter((rawAd) => rawAd.advertiser.score > 98)
       .filter((rawAd) => rawAd.advertiser.tradeCount >= 100)
 
+    const filteredAds = paymentChannels.length
+      ? ads.filter((rawAd) =>
+          rawAd.paymentChannels.some((channel) =>
+            paymentChannels.includes(channel),
+          ),
+        )
+      : ads
+
     const sortCriteria: (a: Advertise, b: Advertise) => number =
       typeOperation === TypeOperation.SELL
         ? (a, b) => b.price - a.price
         : (a, b) => a.price - b.price
-    return ads.sort(sortCriteria)
+
+    return filteredAds.sort(sortCriteria)
   },
   async getAvailablePaymentChannels() {
     return Object.keys(paymentChannels)
