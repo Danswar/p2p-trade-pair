@@ -33,24 +33,22 @@ const CurrencySelector = ({
       <Button onClick={() => setOpen(true)} endIcon={<ArrowDropDown />}>
         {selected}
       </Button>
-      {open && (
-        <Dialog open={open} onClose={() => setOpen(false)} disableScrollLock>
-          <DialogTitle>Select a currency</DialogTitle>
-          <DialogContent>
-            <List>
-              {supportedCurrencies.map((currencyCode) => (
-                <ListItem
-                  key={currencyCode}
-                  button
-                  onClick={() => handleSelected(currencyCode)}
-                >
-                  <ListItemText>{currencyCode}</ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </DialogContent>
-        </Dialog>
-      )}
+      <Dialog open={open} onClose={() => setOpen(false)} disableScrollLock>
+        <DialogTitle>Select a currency</DialogTitle>
+        <DialogContent>
+          <List>
+            {supportedCurrencies.map((currencyCode) => (
+              <ListItem
+                key={currencyCode}
+                button
+                onClick={() => handleSelected(currencyCode)}
+              >
+                <ListItemText>{currencyCode}</ListItemText>
+              </ListItem>
+            ))}
+          </List>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
