@@ -6,7 +6,10 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => (
     <GlobalStyles
       styles={{
         "*": { boxSizing: "border-box" },
-        body: { margin: 0 }
+        body: { margin: 0 },
+        "#root": {
+          background: "#fcfbfb"
+        }
       }}
     />
     {children}
