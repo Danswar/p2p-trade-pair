@@ -20,6 +20,12 @@ const paymentChannels = {
     'Banco Venezuela',
     'venezuela',
   ],
+  brubank: ['brubank'],
+  'mercado-pago': ['mercado pago'],
+  cvu: ['cvu'],
+  paypal: ['paypal'],
+  bsc: ['bsc', 'bep20', 'binance smart chain'],
+  'binance-pay': ['binance pay', 'binance id'],
 }
 
 export const calculatePaymentChannelFromMessage = (
