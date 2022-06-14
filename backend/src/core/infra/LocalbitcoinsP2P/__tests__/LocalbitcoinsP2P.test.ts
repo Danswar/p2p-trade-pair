@@ -3,7 +3,7 @@ import fetchAsJson from '../utils/fetchAsJson'
 import TypeOperation from '../../../entities/TypeOperation'
 import rawAds from './mocks/rawAds.json'
 import parsedAds from './mocks/parsedAds.json'
-// import fs from 'fs'
+import fs from 'fs'
 
 jest.mock('../utils/fetchAsJson', () => jest.fn())
 

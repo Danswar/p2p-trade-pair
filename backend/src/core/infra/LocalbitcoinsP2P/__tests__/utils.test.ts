@@ -20,7 +20,7 @@ describe('Calculate payment channels from msg', () => {
   it('Provincial', () => {
     const mockMessage = ['BBVA Provincial']
     const result = calculatePaymentChannelFromMessage(mockMessage)
-    expect(result).toEqual(['provincial'])
+    expect(result).toEqual(['bbva'])
   })
 
   it('Banco de Venezuela', () => {

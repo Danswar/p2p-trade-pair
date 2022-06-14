@@ -17,7 +17,7 @@
         "maxAmount": 999999999860,
         "paymentChannels": [
             "mercantil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1426533"
@@ -41,7 +41,7 @@
         "paymentChannels": [
             "pago-movil",
             "mercantil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1424898"
@@ -174,7 +174,7 @@
         "maxAmount": 3498,
         "paymentChannels": [
             "mercantil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1411507"
@@ -325,7 +325,7 @@
         "minAmount": 100,
         "maxAmount": 1500,
         "paymentChannels": [
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1112324"
@@ -371,7 +371,7 @@
         "paymentChannels": [
             "banesco",
             "mercantil",
-            "provincial"
+            "bbva"
         ],
         "publicView": "https://localbitcoins.com/ad/1410612"
     },
@@ -522,7 +522,7 @@
         "paymentChannels": [
             "banesco",
             "mercantil",
-            "provincial"
+            "bbva"
         ],
         "publicView": "https://localbitcoins.com/ad/1431281"
     },
@@ -588,7 +588,7 @@
         "paymentChannels": [
             "pago-movil",
             "mercantil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1347606"
@@ -634,7 +634,7 @@
         "paymentChannels": [
             "banesco",
             "pago-movil",
-            "provincial"
+            "bbva"
         ],
         "publicView": "https://localbitcoins.com/ad/1122287"
     },
@@ -747,7 +747,7 @@
             "banesco",
             "pago-movil",
             "mercantil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1439580"
@@ -832,7 +832,7 @@
         "minAmount": 500,
         "maxAmount": 3000,
         "paymentChannels": [
-            "provincial"
+            "bbva"
         ],
         "publicView": "https://localbitcoins.com/ad/1424469"
     },
@@ -855,7 +855,7 @@
         "paymentChannels": [
             "banesco",
             "pago-movil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1455281"
@@ -879,7 +879,7 @@
         "paymentChannels": [
             "banesco",
             "pago-movil",
-            "provincial",
+            "bbva",
             "banco-venezuela"
         ],
         "publicView": "https://localbitcoins.com/ad/1457464"
@@ -943,7 +943,7 @@
         "paymentChannels": [
             "banesco",
             "mercantil",
-            "provincial"
+            "bbva"
         ],
         "publicView": "https://localbitcoins.com/ad/1414621"
     },

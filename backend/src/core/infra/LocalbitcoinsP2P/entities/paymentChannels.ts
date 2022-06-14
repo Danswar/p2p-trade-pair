@@ -7,7 +7,7 @@ const paymentChannels = {
     'pago m\u00f3vil',
   ],
   mercantil: ['mercantil'],
-  provincial: ['bbva', 'provincial'],
+  bbva: ['bbva', 'provincial'],
   'banco-venezuela': [
     'Banco de Venezuela',
     'BDV',
