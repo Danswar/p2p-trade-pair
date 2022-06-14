@@ -6,9 +6,10 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText
 } from "@mui/material";
-import { FilterAlt } from "@mui/icons-material";
+import { Check, FilterAlt } from "@mui/icons-material";
 
 interface PaymentChannelFilterProps {
   selected: string;
@@ -38,6 +39,11 @@ const PaymentChannelFilter = ({
         <DialogContent>
           <List>
             <ListItem button onClick={() => handleSelected("")}>
+              {!selected && (
+                <ListItemIcon>
+                  <Check />
+                </ListItemIcon>
+              )}
               <ListItemText>All</ListItemText>
             </ListItem>
             {filterOptions.map((filterLabel) => (
@@ -46,6 +52,11 @@ const PaymentChannelFilter = ({
                 button
                 onClick={() => handleSelected(filterLabel)}
               >
+                {filterLabel === selected && (
+                  <ListItemIcon>
+                    <Check />
+                  </ListItemIcon>
+                )}
                 <ListItemText>{filterLabel}</ListItemText>
               </ListItem>
             ))}
