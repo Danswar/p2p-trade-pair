@@ -3,6 +3,7 @@ import AppBar from "./components/AppBar";
 import useBestAds from "./hooks/useBestAds";
 import AdSearchCard from "./components/AdSearchCard";
 import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 const SUPPORTED_CURRENCIES = ["USDT", "ARS", "VED", "BRL"];
 
@@ -56,9 +57,14 @@ function App() {
         typeOperation={outputTypeOperation}
         setTypeOperation={setOutputTypeOperation}
       />
-      <Typography variant="h1" textAlign={"center"}>
-        {rate.toFixed(4)}
-      </Typography>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography variant="h4" textAlign={"center"}>
+          {rate.toFixed(4)}
+        </Typography>
+        <Typography
+          sx={{ lineHeight: 3.5 }}
+        >{`${outputCurrency}/${inputCurrency}`}</Typography>
+      </Box>
     </Layout>
   );
 }
