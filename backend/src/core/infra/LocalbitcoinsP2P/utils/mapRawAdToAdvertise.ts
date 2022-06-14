@@ -25,12 +25,14 @@ const paymentChannels = {
 export const calculatePaymentChannelFromMessage = (
   msgs: string[],
 ): string[] => {
-  const parsedMsgs = msgs.map((msg) => msg.toLowerCase())
+  const parsedMsgs = msgs.map((msg) => (msg ? msg.toLowerCase() : ''))
 
   const channels = Object.entries(paymentChannels).reduce(
     (acc, [channelKey, keywords]) => {
       const isKeywordInMessage = keywords.some((keyword) =>
-        parsedMsgs.some((msg) => msg.includes(keyword.toLowerCase())),
+        parsedMsgs.some((msg) =>
+          msg ? msg.includes(keyword.toLowerCase()) : '',
+        ),
       )
       return isKeywordInMessage ? [...acc, channelKey] : acc
     },
