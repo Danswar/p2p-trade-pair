@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-
-import { Link } from "@mui/material";
 import Slider from "react-slick";
 import { Advertise } from "../../interfaces/Advertise";
+import AdDetails from "./AdDetails";
 
 interface AdsListProps {
   ads: Advertise[];
@@ -45,28 +44,23 @@ const AdsList = ({ ads, onChange }: AdsListProps) => {
             advertiser: { name, tradeCount, score },
             pair: { symbol },
             price,
+            minAmount,
+            maxAmount,
             typeOperation,
             publicView
           }) => (
-            <div key={id}>
-              <div style={{ margin: "5px", border: "solid black 1px" }}>
-                <p>
-                  {name} (<span>{tradeCount}</span> <span>{score}%</span>)
-                </p>
-                <p>
-                  {price} {symbol}
-                </p>
-                <p>{typeOperation}</p>
-                <p>
-                  <Link href={publicView} target="blank">
-                    Go to this ad
-                  </Link>
-                  <span>
-                    {current}/{ads.length}
-                  </span>
-                </p>
-              </div>
-            </div>
+            <AdDetails
+              id={id}
+              name={name}
+              tradeCount={tradeCount}
+              score={score}
+              price={price}
+              symbol={symbol}
+              minAmount={minAmount}
+              maxAmount={maxAmount}
+              typeOperation={typeOperation}
+              publicView={publicView}
+            />
           )
         )}
       </Slider>
